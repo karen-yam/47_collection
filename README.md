@@ -120,3 +120,6 @@ Xやインスタグラムなど、旅行好き向けに展開し認知を広げ�
 |gem|Devise(ユーザー認証)　<br/>Carrierwave(画像アップロード)　<br/>MiniMagick(画像処理)|
 | バッジ機能 | SVG（バッジ画像表示）<br/>JavaScript / Stimulus (取得時アニメーション表示) |
 | 地図塗りつぶし機能 |SVG/ GeoJSON（都道府県ポリゴン）<br> JavaScript / Stimulus (塗りつぶし操作)|
+
+## 画面遷移図
+https://www.figma.com/design/X6aQ14HezkjaGmdPqBEmsn/47%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3?node-id=0-1&t=RdGqdMl1uKOcjKbx-1
