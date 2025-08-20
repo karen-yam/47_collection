@@ -51,6 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # The path used after sign up.
+  # 新規登録後は投稿一覧へリダイレクト
   def after_sign_up_path_for(resource)
     super(resource)
   end
