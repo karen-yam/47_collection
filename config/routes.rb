@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     :registration => 'users/registrations',
     :sessions => 'users/sessions',
   }
+  resources :posts, only: %i[index]
   
   get "static_pages/top"
   

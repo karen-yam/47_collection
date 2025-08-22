@@ -41,24 +41,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
+  # 新規登録時に受け取れるパラメータを追加
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
+  # プロフィール編集時に受け取れる
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :bio, :is_published])
   end
 
-  # The path used after sign up.
-  # 新規登録後は投稿一覧へリダイレクト
-  def after_sign_up_path_for(resource)
-    super(resource)
-  end
-
   # The path used after sign up for inactive accounts.
   # アクティブでないアカウントのサインアップ後に使用する path
-  def after_inactive_sign_up_path_for(resource)
-    super(resource)
-  end
+  # def after_inactive_sign_up_path_for(resource)
+  #   super(resource)
+  # end
 end
