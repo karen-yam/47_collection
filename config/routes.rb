@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    :registration => 'users/registrations',
-    :sessions => 'users/sessions',
+    registration: "users/registrations",
+    sessions: "users/sessions"
   }
   resources :posts, only: %i[index]
-  
+
   get "static_pages/top"
-  
+
   if Rails.env.development?
-  mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
