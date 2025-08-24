@@ -1,0 +1,20 @@
+<% if post.present? %>
+  <!-- 投稿済 -->
+  <div class="card bg-base-100 shadow-sm">
+    <figure>
+      <%= image_tag(post.image.url, class:"h-32 w-full object-cover") if post.image.present? %>
+    </figure>
+    <div class="card-body p-4">
+      <h2 class="card-title text-sm"><%= post.prefecture.name %></h2>
+      <%= link_to "詳細", post_path(post), class: "btn btn-xs btn-outline mt-2" %>
+    </div>
+  </div>
+<% else %>
+  <!-- 未投稿 -->
+  <div class="card bg-gray-100 shadow-inner flex items-center justify-center h-48">
+    <div class="text-center">
+      <p class="font-bold"><%= prefecture.name %></p>
+      <%= link_to "投稿する", new_post_path(prefecture_id: prefecture.id), class: "btn btn-sm btn-primary mt-2" %>
+    </div>
+  </div>
+<% end %>
