@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  root to: 'static_pages#top'
+
   devise_for :users, controllers: {
     registration: "users/registrations",
     sessions: "users/sessions"
   }
   resources :posts, only: %i[index new create edit show]
-
-  get "static_pages/top"
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
