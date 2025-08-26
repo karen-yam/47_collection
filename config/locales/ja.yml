@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "とパスワードの登録に失敗しました。内容をご確認ください"

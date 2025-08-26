@@ -19,6 +19,8 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "rails-i18n"
+
 # ログイン機能
 gem "devise"
 gem "devise-i18n"
