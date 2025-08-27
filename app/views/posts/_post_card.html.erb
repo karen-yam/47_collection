@@ -11,10 +11,11 @@
   </div>
 <% else %>
   <!-- 未投稿 -->
-  <div class="card bg-gray-100 shadow-inner flex items-center justify-center h-48">
-    <div class="text-center">
-      <p class="font-bold"><%= prefecture.name %></p>
-      <%= link_to "投稿する", new_post_path(prefecture_id: prefecture.id), class: "btn btn-sm btn-primary mt-2" %>
+  <%= link_to new_post_path(prefecture_id: prefecture.id), class: "block w-full h-full" do %>
+    <div class="card bg-gray-100 shadow-inner flex items-center justify-center h-48">
+      <div class="text-center">
+        <p class="font-bold"><%= prefecture.name %></p>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

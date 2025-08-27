@@ -22,7 +22,11 @@
     <div class="navbar bg-base-100 shadow">
       
       <div class="flex-1">
-        <%= link_to "47コレクション", root_path, class: "btn btn-ghost normal-case text-xl" %>
+        <% if user_signed_in? %>
+          <%= link_to "47コレクション", posts_path, class: "btn btn-ghost normal-case text-xl" %>
+        <% else %>
+          <%= link_to "47コレクション", root_path, class: "btn btn-ghost normal-case text-xl" %>
+        <% end %>
       </div>
       <div class="flex-none">
         <ul class="menu menu-horizontal px-1">

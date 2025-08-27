@@ -13,29 +13,31 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, success: '投稿しました'
+      redirect_to posts_path, notice: '投稿しました'
     else
-      flash.now[:danger] = "投稿に失敗しました"
+      flash.now[:alert] = "投稿に失敗しました"
       render :new, status: :unprocessable_entity
     end
   end
 
-  def show;end
+  def show
+    @post
+  end
 
   def edit;end
 
   def update
     if @post.update(post_params)
-      redirect_to @post, success: "更新しました"
+      redirect_to post_path(@post), notice: "更新しました"
     else
-      flash.now[:danger] = "更新に失敗しました"
+      flash.now[:alert] = "更新に失敗しました"
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_path, success: "投稿を削除しました"
+    redirect_to posts_path, notice: "投稿を削除しました"
   end
   
   private
@@ -44,5 +46,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body, :prefecture_id, :category_id, :image, :image_cache)
   end
 
-
+  def set_post
+    @post = current_user.posts.find(params[:id])
+  end
 end
