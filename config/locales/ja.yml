@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    models:
+      post: "投稿"
+      prefecture: "都道府県"
+    attributes:
+      post:
+        title: "タイトル"
+        body: "旅の思い出"
+        category: "カテゴリー"
+        category_id: "カテゴリー"
+        prefecture: "都道府県"
+        prefecture_id: "都道府県"
+        image: "写真"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "とパスワードの登録に失敗しました。内容をご確認ください"
+        post:
+          attributes:
+            image:
+              blank: "を選択してください"
+  errors:
+    messages:
+      extension_allowlist_error: "は許可されている拡張子(jpg, jpeg, png)のみアップロード可能です。"
+

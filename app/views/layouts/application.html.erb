@@ -16,23 +16,51 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <header>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-  </header>
+  
+  <body class="bg-base-200 min-h-screen flex flex-col">
+    <!-- ナビバー -->
+    <div class="navbar bg-base-100 shadow">
+      
+      <div class="flex-1">
+        <% if user_signed_in? %>
+          <%= link_to "47コレクション", posts_path, class: "btn btn-ghost normal-case text-xl" %>
+        <% else %>
+          <%= link_to "47コレクション", root_path, class: "btn btn-ghost normal-case text-xl" %>
+        <% end %>
+      </div>
+      <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+          <% if user_signed_in? %>
+            <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %></li>
+          <% else %>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
-  <body>
-    <%= render 'shared/flash_message' %>
-    <%= yield %>
+    <!-- フラッシュメッセージ -->
+    <div class="container mx-auto mt-4 px-4">
+      <% if notice %>
+        <div class="alert alert-success shadow-lg mb-2"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-error shadow-lg mb-2"><%= alert %></div>
+      <% end %>
+    </div>
+
+    <!-- コンテンツ -->
+    <main class="flex-grow container mx-auto px-4 mt-6">
+      <%= yield %>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+      <aside>
+        <p>© 2025 47コレクション - All rights reserved</p>
+      </aside>
+    </footer>
   </body>
 </html>
+

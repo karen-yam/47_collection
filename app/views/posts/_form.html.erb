@@ -1,0 +1,72 @@
+<% if @post.errors.any? %>
+  <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
+  <% if @post.prefecture_id.present? %>
+    <!-- 編集 -->
+    <div>
+      <%= f.label :prefecture_id, "都道府県", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.select :prefecture_id,
+        options_from_collection_for_select([@post.prefecture], :id, :name, selected: @post.prefecture_id),
+        {},
+        class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5",
+        disabled: true %>
+      <%= f.hidden_field :prefecture_id, value: @post.prefecture_id %>
+    </div>
+  <% elsif !@post.persisted? && params[:prefecture_id].present? %>
+    <!-- 都道府県選択後の新規作成 -->
+    <div>
+      <%= f.label :prefecture_id, "都道府県", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.select :prefecture_id,
+            options_from_collection_for_select([Prefecture.find(params[:prefecture_id])], :id, :name, selected: params[:prefecture_id]),
+            {},
+            class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5",
+            disabled: true %>
+      <%= f.hidden_field :prefecture_id, value: params[:prefecture_id] %>
+    </div>   
+  <% else %>
+    <!-- お土産を追加する -->
+    <div>
+      <%= f.label :prefecture_id, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.select :prefecture_id, 
+            options_from_collection_for_select(Prefecture.all, :id, :name),
+            { prompt: "選択してください" },
+            class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :title, 
+    class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+  </div>
+  <div>
+    <%= f.label :category_id, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.select :category_id, 
+          options_from_collection_for_select(Category.all, :id, :name),
+          { prompt: "選択してください" },
+          class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+  </div>
+  <div>
+    <%= f.label :body, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :body,
+          class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                  focus:ring-blue-500 focus:border-blue-500 block w-full p-10" %>
+  </div>
+  <div>
+    <%= f.label :image, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.file_field :image,
+          class:"block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none p-2.5" %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <%= f.submit nil, class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
+<% end %>
