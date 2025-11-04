@@ -24,6 +24,8 @@ gem "rails-i18n"
 # ログイン機能
 gem "devise"
 gem "devise-i18n"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-google-oauth2"
 
 # 画像投稿
 gem "carrierwave", "~> 3.0"
@@ -61,6 +63,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "dotenv"
 end
 
 group :development do
