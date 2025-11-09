@@ -1,13 +1,24 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "ログインはこちら", new_session_path(resource_name) %><br />
+  <div class="m-auto mt-6 w-fit md:mt-8">ログインは
+    <%= link_to "こちら", new_session_path(resource_name), class: "underline font-semibold text-indigo-600 dark:text-indigo-100" %><br />
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "ユーザー登録はこちら", new_registration_path(resource_name) %><br />
+  <div class="m-auto mt-6 w-fit md:mt-8">ユーザー登録は
+    <span class="m-auto dark:text-gray-400">
+      <%= link_to "こちら", new_registration_path(resource_name), class: "underline font-semibold text-indigo-600 dark:text-indigo-100" %><br />
+    </span>
+  </div>
 <% end %>
 
+
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name) %><br />
+  <div class="m-auto w-fit">パスワードを忘れた方は
+    <span class="m-auto dark:text-gray-400">
+      <%= link_to "こちら", new_user_password_path(resource_name), class: "underline font-semibold text-indigo-600 dark:text-indigo-100" %><br />
+    </span>
+  </div>
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -16,10 +27,4 @@
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
-  <% end %>
 <% end %>
