@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "my_posts/index"
   root to: "static_pages#top"
 
   devise_for :users, controllers: {
@@ -8,7 +9,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :posts
+  resources :posts do
+    collection do
+      get :my_collection
+    end
+  end
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
