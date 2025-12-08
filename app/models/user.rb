@@ -8,6 +8,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
 
+  scope :published, -> { where(is_published: true) }
+  scope :unpublished, -> { where(is_published: false) }
+
   has_many :posts, dependent: :destroy
 
   def posted_prefecture_count

@@ -55,7 +55,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   # 新規登録時に受け取れるパラメータを追加
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :bio, :is_published ])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
