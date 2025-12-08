@@ -1,11 +1,9 @@
 <h1 class="text-2xl text-center font-bold mb-4">みんなの投稿</h1>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-  <% @posts.each do |post| %>
-    <%= render partial: "shared/post", locals: { post: post } %>
-
-  <% end %>
-
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <% @posts.each do |post| %>
+      <%= render partial: "shared/post", locals: { post: post } %>
+    <% end %>
 </div>
 
 
