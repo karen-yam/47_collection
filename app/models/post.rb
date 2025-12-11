@@ -8,5 +8,7 @@ class Post < ApplicationRecord
   belongs_to :prefecture
   belongs_to :category
 
+  has_many :likes, dependent: :destroy
+
   mount_uploader :image, ImageUploader
 end

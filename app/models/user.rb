@@ -12,6 +12,7 @@ class User < ApplicationRecord
   scope :unpublished, -> { where(is_published: false) }
 
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def posted_prefecture_count
     posts.select(:prefecture_id).distinct.count
