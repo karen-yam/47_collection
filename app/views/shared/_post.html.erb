@@ -1,0 +1,18 @@
+<div class="bg-white block w-full p-6 border border-default rounded-lg shadow-xs">
+  <% if post.present? %>
+    <h1 class="font-bold text-center"><%= post.prefecture.name %></h1>
+    <figure>
+      <%= link_to post_path(post) do %>
+        <%= image_tag(post.image.url, class:"w-full aspect-square rounded object-cover") %>
+      <% end %>
+    </figure>
+    <div class="card-body p-4">
+      <div><%= post.user.name %></div>
+      <h2 class="card-title text-sm">
+        <%= link_to post.title, post_path(post) %>
+      </h2>
+      <p><%= post.body %></p>
+    </div>
+
+  <% end %>
+</div>

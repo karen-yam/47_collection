@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = current_user.posts.includes(:prefecture, :category)
+    @posts = Post.joins(:user).merge(User.published)
   end
 
   def new
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post
+    @post = Post.find(params[:id])
   end
 
   def edit;end

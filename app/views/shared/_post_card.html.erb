@@ -2,7 +2,7 @@
   <!-- 投稿済 -->
   <div class="card bg-base-100 shadow-sm">
     <figure>
-      <%= image_tag(post.image.url, class:"h-32 w-full object-cover") if post.image.present? %>
+      <%= image_tag(post.image.url, class:"w-full aspect-square object-cover") if post.image.present? %>
     </figure>
     <div class="card-body p-4">
       <h2 class="card-title text-sm"><%= post.prefecture.name %></h2>
