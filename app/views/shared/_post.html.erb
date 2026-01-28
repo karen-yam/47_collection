@@ -1,18 +1,32 @@
 <div class="bg-white block w-full p-6 border border-default rounded-lg shadow-xs">
   <% if post.present? %>
-    <h1 class="font-bold text-center"><%= post.prefecture.name %></h1>
-    <figure>
-      <%= link_to post_path(post) do %>
-        <%= image_tag(post.image.url, class:"w-full aspect-square rounded object-cover") %>
-      <% end %>
-    </figure>
+      <div class="relative">
+        <%= link_to post_path(post) do %>
+          <%= image_tag(post.image.url, class:"w-full aspect-square rounded object-cover") %>
+        <% end %>
+        <div class="absolute top-2 left-2 bg-green-600/80 text-white text-xs px-2 py-1 rounded">
+          <%= post.prefecture.name %>
+        </div>
+      </div>
+    
     <div class="card-body p-4">
+      <div class="flex items-center justify-between">
+        <h2 class="card-title text-sm">
+          <%= link_to post.title, post_path(post) %>
+        </h2>
+        <% if current_user.own?(post) %>
+          <%= render "posts/like_buttons", { post: post } %>
+        <% end %>
+      </div>
+      <p class="text-gray-500"><%= post.body %></p>
       <div><%= post.user.name %></div>
-      <h2 class="card-title text-sm">
-        <%= link_to post.title, post_path(post) %>
-      </h2>
-      <p><%= post.body %></p>
+      <div class="pt-4">
+        <% if post.category.present? %>
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">
+            <%= post.category.name %>
+          </span>
+        <% end %>
+      </div>
     </div>
-
   <% end %>
 </div>
