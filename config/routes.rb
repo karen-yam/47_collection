@@ -11,9 +11,11 @@ Rails.application.routes.draw do
 
   resources :posts do
     collection do
-      get :my_collection
+      get :my_posts
+      get :liked_posts
     end
   end
+  resources :likes, only: %i[create destroy]
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"

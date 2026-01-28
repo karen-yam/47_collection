@@ -40,6 +40,10 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "投稿を削除しました"
   end
 
+  def liked_posts
+    @post = current_user.liked_posts.includes(:user).order(created_at: :desc)
+  end
+
   private
 
   def post_params
