@@ -12,6 +12,8 @@ class User < ApplicationRecord
   scope :unpublished, -> { where(is_published: false) }
 
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
 
   def posted_prefecture_count
     posts.select(:prefecture_id).distinct.count
@@ -27,5 +29,21 @@ class User < ApplicationRecord
 
   def self.create_unique_string
     SecureRandom.uuid
+  end
+
+  def own?(object)
+    id == object&.user_id
+  end
+
+  def like(post)
+    liked_posts << post
+  end
+
+  def unlike(post)
+    liked_posts.destroy(post)
+  end
+
+  def like?(post)
+    liked_posts.include?(post)
   end
 end
