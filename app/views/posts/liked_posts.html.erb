@@ -1,0 +1,7 @@
+<h1 class="text-2xl text-center font-bold mb-4">いいね一覧</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <% @liked_posts.each do |post| %>
+      <%= render partial: "shared/post", locals: { post: post } %>
+    <% end %>
+</div>
