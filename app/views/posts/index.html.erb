@@ -1,4 +1,15 @@
-<h1 class="text-2xl text-center font-bold mb-4">みんなの投稿</h1>
+<h1 class="text-2xl text-center font-bold">みんなの投稿</h1>
+
+<!-- 検索フォーム -->
+<%= render "search_form", q: @q, url: posts_path %>
+
+<h2 class="py-2">
+  <% if params[:q].present? || params[:category_id].present? %>
+    <p>検索結果：<%= @posts.count %>件の投稿</p>
+  <% else %>
+    <p>全<%= Post.count %>件の投稿</p>
+  <% end %>
+</h2>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
     <% @posts.each do |post| %>

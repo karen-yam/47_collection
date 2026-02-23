@@ -3,7 +3,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.joins(:user).merge(User.published)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).joins(:user)
+                                      .merge(User.published)
+                                      .includes(:user, :prefecture, :category)
+
+    # カテゴリークリックで同じカテゴリーの投稿が表示される
+    if params[:category_id]
+      @posts = @posts.where(category_id: params[:category_id])
+    end
   end
 
   def new
@@ -41,7 +49,9 @@ class PostsController < ApplicationController
   end
 
   def liked_posts
-    @liked_posts = current_user.liked_posts.includes(:user).order("likes.created_at DESC")
+    @liked_posts = current_user.liked_posts
+                               .includes(:likes, :user, :prefecture, :category)
+                               .order("likes.created_at DESC")
   end
 
   private
