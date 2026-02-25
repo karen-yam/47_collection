@@ -1,7 +1,7 @@
 <div class="flex justify-center py-8">
   <%= search_form_for @q do |f| %>
     <div class="join items-center">
-      <%= f.search_field :title_or_body_cont, class: "input input-md text-base join-item sm:w-60 md:w-100 lg:w-120", placeholder: "検索ワード" %>
+      <%= f.search_field :title_or_body_or_category_name_cont, class: "input input-md text-base join-item sm:w-60 md:w-100 lg:w-120", placeholder: "検索ワード" %>
       <%= f.collection_select :prefecture_id_eq,
             Prefecture.all,
             :id,
