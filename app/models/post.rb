@@ -12,4 +12,12 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
 
   mount_uploader :image, ImageUploader
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "title", "body" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "category", "liked_users", "likes", "prefecture", "user" ]
+  end
 end

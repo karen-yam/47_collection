@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
 
   def posted_prefecture_count
-    posts.select(:prefecture_id).distinct.count
+    posts.distinct.count(:prefecture_id)
   end
 
   def self.from_omniauth(auth)
