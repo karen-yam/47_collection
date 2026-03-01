@@ -25,4 +25,8 @@ ja:
   errors:
     messages:
       extension_allowlist_error: "は許可されている拡張子(jpg, jpeg, png)のみアップロード可能です。"
+  views:
+    pagination:
+      previous: "前へ"
+      next: "次へ"
 

@@ -6,11 +6,11 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).joins(:user)
                                       .merge(User.published)
-                                      .includes(:user, :prefecture, :category)
+                                      .includes(:user, :prefecture, :category).page(params[:page])
 
     # カテゴリークリックで同じカテゴリーの投稿が表示される
     if params[:category_id]
-      @posts = @posts.where(category_id: params[:category_id])
+      @posts = @posts.where(category_id: params[:category_id]).page(params[:page])
     end
   end
 

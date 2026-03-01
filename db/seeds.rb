@@ -36,3 +36,7 @@ categories = [
 categories.each do |name|
   Category.find_or_create_by!(name: name)
 end
+
+# 開発環境seed
+seed_file = Rails.root.join("db", "seeds", "#{Rails.env.downcase}.rb")
+load seed_file if File.exist?(seed_file)
