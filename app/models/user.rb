@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, uniqueness: true
+  validates :bio, length: { maximum: 100 }
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
 
   scope :published, -> { where(is_published: true) }
