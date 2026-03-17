@@ -8,7 +8,14 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    super
+    user = User.find_by(email: params[:user][:email])
+
+    if user&.provider.present?
+      redirect_to new_user_password_path,
+        alert: "このメールアドレスはGoogleログインのため、パスワードの変更はできません。Googleアカウントでログインしてください。"
+    else
+      super
+    end
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef

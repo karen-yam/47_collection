@@ -29,6 +29,23 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all" %>
         </div>
 
+        <fieldset class="fieldset bg-base-100 border-gray-300 rounded-box w-full border p-4">
+          <legend class="fieldset-legend text-sm">投稿の公開設定</legend>
+          <p class="text-xs text-gray-500 mb-4">
+            公開設定をすると「みんなの投稿」に表示されます。
+          </p>
+          <div class="flex gap-4">
+            <label class="flex items-center gap-2">
+              <%= f.radio_button :is_published, true , class: "radio-xs"%>
+              公開
+            </label>
+            <label class="flex items-center gap-2">
+              <%= f.radio_button :is_published, false , class: "radio-xs"%>
+              非公開
+            </label>
+          </div>
+        </fieldset>
+
         <%= f.submit "登録する", class: "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors mb-4" %>
 
         <div class="relative mb-4">

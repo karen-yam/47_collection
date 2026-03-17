@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
-  get "my_posts/index"
   root to: "static_pages#top"
 
   devise_for :users, controllers: {
-    registration: "users/registrations",
+    registrations: "users/registrations",
     sessions: "users/sessions",
     passwords: "users/passwords",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  resources :users, only: %i[show edit update] do
+    member do
+      get  :email_change
+      patch :email_change, action: :update_email
+      get :password_change
+      patch :password_change, action: :update_password
+    end
+  end
+  resources :my_posts, only: %i[index]
+
   resources :posts do
     collection do
-      get :my_posts
       get :liked_posts
     end
   end
