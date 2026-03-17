@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     member do
       get  :email_change
       patch :email_change, action: :update_email
-      get  :password_change
+      get :password_change
       patch :password_change, action: :update_password
     end
   end
