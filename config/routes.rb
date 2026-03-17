@@ -8,8 +8,15 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :users, only: [:show]
-  resources :my_posts, only: [:index]
+  resources :users, only: %i[show edit update] do
+    member do
+      get  :email_change
+      patch :email_change, action: :update_email
+      get  :password_change
+      patch :password_change, action: :update_password
+    end
+  end
+  resources :my_posts, only: %i[index]
 
   resources :posts do
     collection do

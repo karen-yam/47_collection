@@ -20,12 +20,19 @@ class User < ApplicationRecord
     posts.distinct.count(:prefecture_id)
   end
 
+  attr_accessor :newly_registered
+
   def self.from_omniauth(auth)
-    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name
+    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    if user.new_record?
+      user.email            = auth.info.email
+      user.password         = Devise.friendly_token[0, 20]
+      user.name             = auth.info.name
+      user.is_published     = false
+      user.newly_registered = true
+      user.save
     end
+    user
   end
 
   def self.create_unique_string

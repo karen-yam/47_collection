@@ -18,6 +18,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(auth)
 
     if @user.persisted?
+      if @user.newly_registered
+        flash[:notice] = "Googleアカウントで登録しました。投稿の公開設定はマイページから行えます。"
+      else
+        flash[:notice] = "Googleアカウントでログインしました。"
+      end
       sign_in_and_redirect @user, event: :authentication
     else
       if User.exists?(email: auth.info.email)

@@ -1,27 +1,59 @@
 <div class="flex items-center justify-center p-4">
-  <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">マイページ</h2>
-    <div class="space-y-10">
+  <div class="max-w-3xl w-full space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900 text-center">マイページ</h2>
 
-      <div class="flex">
-        <p class="w-24 text-gray-500">名前</p>
-        <p class="font-medium"><%= @user.name %></p>
+    <div class="flex flex-col md:flex-row gap-6 items-stretch">
+      <%# ── カード1: プロフィール ── %>
+      <div class="bg-white rounded-xl shadow-lg p-8 flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">プロフィール</h3>
+        <div class="space-y-5">
+          <div class="py-3 border-b border-gray-100">
+            <p class="text-sm font-medium text-gray-500">名前</p>
+            <p class="font-medium mt-1"><%= @user.name %></p>
+          </div>
+
+          <div class="py-3 border-b border-gray-100">
+            <p class="text-sm font-medium text-gray-500">自己紹介</p>
+            <p class="font-medium mt-1 break-words"><%= @user.bio.presence || "未設定" %></p>
+          </div>
+
+          <div class="py-3 border-b border-gray-100">
+            <p class="text-sm font-medium text-gray-500">公開設定</p>
+            <p class="mt-1"><%= @user.is_published ? "公開" : "非公開" %></p>
+          </div>
+        </div>
       </div>
 
-      <div class="flex">
-        <p class="w-24 text-gray-500 shrink-0">自己紹介</p>
-        <p class="font-medium break-words"><%= @user.bio %></p>
-      </div>
+      <%# ── カード2: ユーザー情報 ── %>
+      <div class="bg-white rounded-xl shadow-lg p-8 flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">ユーザー情報</h3>
 
-      <div class="flex">
-        <p class="w-24 text-gray-500">公開設定</p>
-        <p><%= @user.is_published ? "公開" : "非公開" %></p>
-      </div>
+        <% if current_user.provider.present? %>
+          <div class="space-y-3">
+            <div>
+              <p class="text-sm font-medium text-gray-500">メールアドレス</p>
+              <p class="text-gray-900 mt-1"><%= @user.email %></p>
+            </div>
+            <div class="py-3 border-b border-gray-100">
+              <p class="text-sm text-gray-500 bg-gray-50 rounded-lg p-3">Googleログインのため変更できません</p>
+            </div>
+          </div>
+        <% else %>
+          <div class="space-y-4">
+            <div class="py-3 border-b border-gray-100">
+              <p class="text-sm font-medium text-gray-500">メールアドレス</p>
+              <p class="text-gray-900 mt-1"><%= @user.email %></p>
+            </div>
 
-      <div>
-        <%= link_to "編集する", edit_user_registration_path, class: "block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors mb-4 text-center" %>
+            <div class="py-3 border-b border-gray-100">
+              <p class="text-sm font-medium text-gray-500">パスワード</p>
+              <p class="text-gray-900 mt-1 tracking-widest">••••••••</p>
+            </div>
+          </div>
+        <% end %>
       </div>
-
     </div>
+
+    <%= link_to "編集する", edit_user_path(current_user), class: "block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors text-center" %>
   </div>
 </div>
