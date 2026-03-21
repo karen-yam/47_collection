@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: %i[show edit update] do
+    resources :posts, only: %i[index], controller: "user_posts"
     member do
       get  :email_change
       patch :email_change, action: :update_email
