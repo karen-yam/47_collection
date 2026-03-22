@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: "static_pages#top"
 
+  get "terms_of_use", to: "static_pages#terms_of_use"
+  get "privacy_policy", to: "static_pages#privacy_policy"
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
