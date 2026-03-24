@@ -1,16 +1,99 @@
-<div class="mt-8 text-center">
-  <h1 class="text-4xl">47 コレクション</h1>
-  <h1 class="text-2l">よんななこれくしょん</h1>
-  <p class="mx-auto mt-4 lg:w-1/2 text-gray-500">
-  全国のお土産と都道府県制覇を一緒に記録できる<br>
-  コレクションアプリです。<br>
-  <br>
-  旅先で手に入れたお土産を投稿して<br>
-  47都道府県を制覇しよう
-  <br>
+<!-- ヒーローセクション -->
+<section class="py-18 px-4 text-center">
+  <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">お土産 × 都道府県</p>
+  <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+    旅の思い出を<br>コレクションしよう。
+  </h1>
+  <p class="text-gray-500 text-lg mb-10 max-w-xl mx-auto">
+    全国47都道府県のお土産コレクションアプリ
   </p>
-  <div class="mt-8 flex flex-wrap justify-center gap-20">
-    <%= link_to "はじめる", new_user_registration_path, class: 'btn btn-primary flex items-center justify-center' %>
-    <%= link_to "ログイン", new_user_session_path, class: 'btn btn-primary flex items-center justify-center' %>
+  <div class="flex justify-center gap-4 flex-wrap">
+    <% if user_signed_in? %>
+      <%= link_to "投稿してみる", new_post_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "みんなの投稿を見る", posts_path, class: "btn btn-outline btn-primary btn-lg" %>
+    <% else %>
+      <%= link_to "はじめる", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "みんなの投稿を見る", posts_path, class: "btn btn-outline btn-primary btn-lg" %>
+    <% end %>
   </div>
-</div>
+</section>
+
+<!-- Aboutセクション -->
+<section class="py-20 px-4 bg-base-100">
+  <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
+    <div>
+      <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3 text-center">About</p>
+      <h2 class="text-2xl md:text-3xl font-bold mb-1 text-center">47コレクション</h2>
+      <p class="text-gray-400 text-sm text-center mb-4">よんななコレクション</p>
+      <p class="text-gray-500 leading-relaxed">
+        47コレクションは、旅先で手に入れたご当地マグネットやポストカードなど、<br>
+        思い出が詰まったお土産を写真とエピソードとともに残せるアプリです。<br>
+        他ユーザーのコレクションも閲覧でき、次の旅先のヒントにもなります。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 特徴 -->
+<section class="py-20 px-4 bg-base-200">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">3つの特徴</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="card bg-base-100 shadow p-8 text-center">
+        <div class="text-5xl mb-4"><i class="fa-solid fa-gift" style="color: rgb(116, 192, 252);"></i></div>
+        <h3 class="font-bold text-lg mb-3">お土産特化型コレクション</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          単なる写真や訪問地の記録ではなく、旅先で手に入れた「お土産」に焦点を当てたコレクション。マグネットやポストカードなど、形に残るアイテムを集める楽しみが中心です。
+        </p>
+      </div>
+      <div class="card bg-base-100 shadow p-8 text-center">
+        <div class="text-5xl mb-4"><i class="fa-solid fa-users" style="color: rgb(44, 21, 139);"></i></div>
+        <h3 class="font-bold text-lg mb-3">ユーザー同士の共有・閲覧</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          投稿したお土産コレクションを他のユーザーと共有可能。他ユーザーのコレクションを閲覧することで、次の旅先のヒントや新しいお土産発見のきっかけになります。
+        </p>
+      </div>
+      <div class="card bg-base-100 shadow p-8 text-center">
+        <div class="text-5xl mb-4"><i class="fa-solid fa-book" style="color: rgb(235, 119, 0);"></i></div>
+        <h3 class="font-bold text-lg mb-3">思い出も一緒に残せる</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          写真だけでなく、旅先でのエピソードや感想も一緒に記録できます。写真投稿のみよりも旅の達成感やコレクションの充実感を実感できます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 使い方 -->
+<section class="py-20 px-4 bg-base-100">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">使い方</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div>
+        <div class="w-14 h-14 rounded-full bg-accent text-primary-content text-2xl font-bold flex items-center justify-center mx-auto mb-4">1</div>
+        <h3 class="font-bold mb-2">お土産を撮影</h3>
+        <p class="text-gray-500 text-sm">旅先で手に入れたお土産の写真を撮りましょう</p>
+      </div>
+      <div>
+        <div class="w-14 h-14 rounded-full bg-accent text-primary-content text-2xl font-bold flex items-center justify-center mx-auto mb-4">2</div>
+        <h3 class="font-bold mb-2">エピソードを記録</h3>
+        <p class="text-gray-500 text-sm">購入した場所や旅の思い出を一緒に書き残せます</p>
+      </div>
+      <div>
+        <div class="w-14 h-14 rounded-full bg-accent text-primary-content text-2xl font-bold flex items-center justify-center mx-auto mb-4">3</div>
+        <h3 class="font-bold mb-2">コレクションを共有</h3>
+        <p class="text-gray-500 text-sm">あなたのコレクションを公開して旅の仲間と繋がろう</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-4 bg-primary text-primary-content text-center">
+  <h2 class="text-2xl md:text-3xl font-bold mb-4">あなただけのコレクションを始めませんか</h2>
+  <p class="mb-8 opacity-80">全国制覇を目指して、旅の思い出をひとつずつ集めよう。</p>
+  <% if user_signed_in? %>
+    <%= link_to "投稿してみる", new_post_path, class: "btn btn-lg bg-white text-primary border-none hover:bg-gray-100" %>
+  <% else %>
+    <%= link_to "はじめる", new_user_registration_path, class: "btn btn-lg bg-white text-primary border-none hover:bg-gray-100" %>
+  <% end %>
+</section>

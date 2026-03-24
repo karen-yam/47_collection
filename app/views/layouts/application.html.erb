@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="cupcake">
   <head>
     <title>47 Collection</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,7 +20,7 @@
   
   <body class="bg-base-200 min-h-screen flex flex-col">
     <!-- ナビバー -->
-    <div class="navbar bg-base-100 shadow">     
+    <div class="navbar bg-base-100 shadow py-4">
       <div class="flex-1">
         <% if user_signed_in? %>
           <%= link_to "47コレクション", posts_path, class: "btn btn-ghost normal-case text-xl" %>
