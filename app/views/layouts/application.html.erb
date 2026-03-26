@@ -15,6 +15,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <script src="https://kit.fontawesome.com/baa2ae3dc1.js" crossorigin="anonymous"></script>
+    <%= favicon_link_tag('logo.png') %>
   </head>
 
   
@@ -22,10 +23,9 @@
     <!-- ナビバー -->
     <div class="navbar bg-base-100 shadow py-4">
       <div class="flex-1">
-        <% if user_signed_in? %>
-          <%= link_to "47コレクション", posts_path, class: "btn btn-ghost normal-case text-xl" %>
-        <% else %>
-          <%= link_to "47コレクション", root_path, class: "btn btn-ghost normal-case text-xl" %>
+        <%= link_to root_path, class: "flex items-center gap-2 px-2 hover:opacity-80 transition-opacity" do %>
+          <%= image_tag "logo.png", class: "h-12 w-auto" %>
+          <span class="font-bold text-2xl">47コレクション</span>
         <% end %>
       </div>
 
