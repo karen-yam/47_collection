@@ -13,8 +13,11 @@ class Users::PasswordsController < Devise::PasswordsController
     if user&.provider.present?
       redirect_to new_user_password_path,
         alert: "このメールアドレスはGoogleログインのため、パスワードの変更はできません。Googleアカウントでログインしてください。"
+    elsif params[:user][:email].blank?
+      redirect_to new_user_password_path, alert: "メールアドレスを入力してください。"
     else
-      super
+      self.resource = resource_class.send_reset_password_instructions(resource_params)
+      redirect_to new_user_session_path, notice: "パスワードリセットのメールを送信しました。メールをご確認ください。"
     end
   end
 
@@ -37,6 +40,6 @@ class Users::PasswordsController < Devise::PasswordsController
   # The path used after sending reset password instructions
   # リセットパスワードの指示を送信した後に使用するpath
   def after_sending_reset_password_instructions_path_for(resource_name)
-    super(resource_name)
+    new_user_session_path
   end
 end
