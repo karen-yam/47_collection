@@ -27,5 +27,3 @@ image_path = Rails.root.join("db/seeds/images/test_image.jpg")
     post.save!
   end
 end
-
-puts "ダミーデータ作成"
