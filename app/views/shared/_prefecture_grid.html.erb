@@ -13,6 +13,6 @@
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
   <% Prefecture.all.each do |prefecture| %>
     <% post = posts.find { |p| p.prefecture_id == prefecture.id } %>
-    <%= render "shared/post_card", prefecture: prefecture, post: post %>
+    <%= render "shared/post_card", prefecture: prefecture, post: post, user: user %>
   <% end %>
 </div>
