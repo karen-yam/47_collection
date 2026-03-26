@@ -1,20 +1,41 @@
 <% if post.present? %>
   <!-- 投稿済 -->
-  <div class="card bg-base-100 shadow-sm">
-    <figure>
-      <%= image_tag(post.image.url, class:"w-full aspect-square object-cover") if post.image.present? %>
-    </figure>
-    <div class="card-body p-4">
-      <h2 class="card-title text-sm"><%= post.prefecture.name %></h2>
-      <%= link_to "詳細", post_path(post), class: "btn btn-xs btn-outline mt-2" %>
+  <%= link_to post_path(post), class: "block" do %>
+    <div class="card bg-base-100 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:-translate-y-1">
+      <figure class="aspect-square overflow-hidden">
+        <% if post.image.present? %>
+          <%= image_tag(post.image.url, class: "w-full h-full object-cover") %>
+        <% else %>
+          <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+            <span class="text-gray-400 text-2xl"></span>
+          </div>
+        <% end %>
+      </figure>
+      <div class="p-2 text-center">
+        <p class="text-sm font-bold"><%= post.prefecture.name %></p>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% else %>
   <!-- 未投稿 -->
-  <%= link_to new_post_path(prefecture_id: prefecture.id), class: "block w-full h-full" do %>
-    <div class="card bg-gray-100 shadow-inner flex items-center justify-center h-48">
-      <div class="text-center">
-        <p class="font-bold"><%= prefecture.name %></p>
+  <% if user_signed_in? && current_user == user %>
+    <%= link_to new_post_path(prefecture_id: prefecture.id), class: "block" do %>
+      <div class="card bg-base-100 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:-translate-y-1">
+        <div class="aspect-square bg-gray-100 flex items-center justify-center">
+          <span class="text-gray-300 text-3xl"><i class="fa-solid fa-circle-plus" style="color: #317cb59c;"></i></span>
+        </div>
+        <div class="p-2 text-center">
+          <p class="text-sm font-bold"><%= prefecture.name %></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card bg-base-100 shadow-sm overflow-hidden cursor-default">
+      <div class="aspect-square bg-gray-100 flex items-center justify-center">
+        <span class="text-gray-300 text-3xl"></span>
+      </div>
+      <div class="p-2 text-center">
+        <p class="text-sm font-bold"><%= prefecture.name %></p>
       </div>
     </div>
   <% end %>
