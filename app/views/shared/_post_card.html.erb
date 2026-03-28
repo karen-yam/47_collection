@@ -4,7 +4,7 @@
     <div class="card bg-base-100 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:-translate-y-1">
       <figure class="aspect-square overflow-hidden">
         <% if post.image.present? %>
-          <%= image_tag(post.image.url, class: "w-full h-full object-cover") %>
+          <%= image_tag(post.image.medium.url, class: "w-full h-full object-cover") %>
         <% else %>
           <div class="w-full h-full bg-gray-200 flex items-center justify-center">
             <span class="text-gray-400 text-2xl"></span>
@@ -31,8 +31,8 @@
     <% end %>
   <% else %>
     <div class="card bg-base-100 shadow-sm overflow-hidden cursor-default">
-      <div class="aspect-square bg-gray-100 flex items-center justify-center">
-        <span class="text-gray-300 text-3xl"></span>
+      <div class="aspect-square flex items-center justify-center">
+        <%= image_tag "coming_soon.png" %>
       </div>
       <div class="p-2 text-center">
         <p class="text-sm font-bold"><%= prefecture.name %></p>

@@ -5,9 +5,9 @@
 
 <h2 class="py-2">
   <% if params[:q].present? || params[:category_id].present? %>
-    <p>検索結果：<%= @posts.count %>件の投稿</p>
+    <p>検索結果：<%= @posts.total_count %>件の投稿</p>
   <% else %>
-    <p>全<%= Post.count %>件の投稿</p>
+    <p>全<%= @posts.total_count %>件の投稿</p>
   <% end %>
 </h2>
 

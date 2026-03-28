@@ -2,7 +2,7 @@
   <% if post.present? %>
       <div class="relative">
         <%= link_to post_path(post) do %>
-          <%= image_tag(post.image.url, class:"w-full aspect-square rounded object-cover") %>
+          <%= image_tag(post.image.medium.url, class:"w-full aspect-square rounded object-cover") %>
         <% end %>
         <div class="absolute top-2 left-2 bg-green-600/80 text-white text-xs px-2 py-1 rounded">
           <%= post.prefecture.name %>
