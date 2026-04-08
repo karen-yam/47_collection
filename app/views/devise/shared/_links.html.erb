@@ -1,23 +1,19 @@
 <%- if controller_name != 'sessions' %>
   <div class="m-auto w-fit">ログインは
-    <%= link_to "こちら", new_session_path(resource_name), class: "underline font-semibold text-primary dark:text-indigo-100" %><br />
+    <%= link_to "こちら", new_session_path(resource_name), class: "underline font-semibold text-primary" %><br />
   </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <div class="m-auto w-fit">ユーザー登録は
-    <span class="m-auto dark:text-gray-400">
-      <%= link_to "こちら", new_registration_path(resource_name), class: "underline font-semibold text-primary dark:text-indigo-100" %><br />
-    </span>
+    <%= link_to "こちら", new_registration_path(resource_name), class: "underline font-semibold text-primary" %><br />
   </div>
 <% end %>
 
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <div class="m-auto w-fit">パスワードを忘れた方は
-    <span class="m-auto dark:text-gray-400">
-      <%= link_to "こちら", new_user_password_path(resource_name), class: "underline font-semibold text-primary dark:text-indigo-100" %><br />
-    </span>
+    <%= link_to "こちら", new_user_password_path(resource_name), class: "underline font-semibold text-primary" %><br />
   </div>
 <% end %>
 
